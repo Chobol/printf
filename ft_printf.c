@@ -6,15 +6,44 @@
 /*   By: chobol <chobol@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 09:46:59 by chobol            #+#    #+#             */
-/*   Updated: 2021/02/25 13:59:30 by chobol           ###   ########.fr       */
+/*   Updated: 2021/02/25 20:02:52 by chobol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdarg.h>
+#include <unistd.h>
+#include "libft.h"
 //#include <stdlib.h>
 //#include <math.h>
 //#include <stdarg.h>
+
+
+/*
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+
+void	ft_putnbr_fd(int nb, int fd)
+{
+	unsigned int a;
+
+	a = 0;
+	if (nb >= 0)
+		a = nb;
+	if (nb < 0)
+	{
+		a = nb * -1;
+		ft_putchar_fd('-', fd);
+	}
+	if (a > 9)
+		ft_putnbr_fd(a / 10, fd);
+	ft_putchar_fd((a % 10) + 48, fd);
+}*/
+
+//void	ft_putchar_fd(char c, int fd);				//this is working!
+//void	ft_putnbr_fd(int nb, int fd);
 
 int ft_printf(const char *textinput, ...)
 {
@@ -31,7 +60,8 @@ int ft_printf(const char *textinput, ...)
 			if (textinput[n]== 'c')
             {
                 char letter = va_arg(list, int);
-                printf("%c", letter);	//putnbr
+                //printf("%c", letter);
+				ft_putchar_fd(letter, 1);					//por qué se pone delante???
             }
 
 			//if (textinput[n]== 's')
@@ -43,13 +73,15 @@ int ft_printf(const char *textinput, ...)
             if ((textinput[n]== 'd') || (textinput[n]== 'i'))
             {
                 int number = va_arg(list, int);
-                printf("%d", number);	//change
+                //printf("%d", number);
+				ft_putnbr_fd(number, 1);
             }
             
             if (textinput[n]== 'u')
             {
                 unsigned int number = va_arg(list, unsigned int);
-                printf("%u", number);	//change
+                //printf("%u", number);
+				ft_putnbr_fd(number, 1);				//que lo pone delante loco...
 			}
 			
 			//if (textinput[n]== 'x')
@@ -62,7 +94,8 @@ int ft_printf(const char *textinput, ...)
         }
 		else
 		{
-			printf("%c", textinput[n]);			//putchar
+			//printf("%c", textinput[n]);
+			ft_putchar_fd(textinput[n], 1);				//si pongo esto aquí parece que va bien WTF
 		}
 		n++;
     }
@@ -72,8 +105,10 @@ int ft_printf(const char *textinput, ...)
 
 int	main()
 {
-	//ft_printf("YAY! %c\n", 'a');
-	printf("YAY! %c\n", 'a');
+	printf("tarde o temprano funcionará %c %d %i %u\n", 'A', 42, 14, 7000);
+	ft_printf("tarde o temprano funcionará %c %d %i %u\n", 'A', 42, 14, 7000);
+	//gcc ft_printf.c ft_putchar_fd.c ft_putnbr_fd.c
+
 
 	return (0);
 }
