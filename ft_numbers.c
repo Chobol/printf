@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_numbers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chobol <chobol@student.42.fr>              +#+  +:+       +#+        */
+/*   By: acortes- <acortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 20:58:09 by chobol            #+#    #+#             */
-/*   Updated: 2021/03/01 18:58:34 by chobol           ###   ########.fr       */
+/*   Updated: 2021/03/02 19:43:19 by acortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	ft_puthexa(t_buffer *b, t_flags *f, unsigned long x, char *type)
 		add_to_buffer(b, f, 'x');
 		f->b_only_once = 1;
 	}
+	while (f->zeros-- > 0)
+		add_to_buffer(b, f, '0');
 	if (*type == 'x' || *type == 'p')
 		add_to_buffer(b, f, "0123456789abcdef"[x & 15]);
 	else
