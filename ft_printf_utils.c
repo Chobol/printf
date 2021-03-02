@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chobol <chobol@student.42.fr>              +#+  +:+       +#+        */
+/*   By: acortes- <acortes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 20:58:52 by chobol            #+#    #+#             */
-/*   Updated: 2021/03/01 17:35:46 by chobol           ###   ########.fr       */
+/*   Updated: 2021/03/02 19:10:39 by acortes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	ft_bzero(void *s, size_t n)
 
 char	*conversion_helper(t_buffer *b, t_flags *f, char *str, char type)
 {
-	if (f->b_left_aligned == 1 && f->b_zero_padding == 1)
-		f->b_zero_padding = 0;
 	if ((f->b_preci == 1 || f->b_preci == 2) && f->precision >= f->to_write)
 		f->zeros = f->precision - f->to_write;
 	else if (f->b_preci == 2 && f->precision == 0 && f->b_num_zero == 1)
