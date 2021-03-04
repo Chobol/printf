@@ -6,7 +6,7 @@
 /*   By: sremenyi <sremenyi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:41:36 by sremenyi          #+#    #+#             */
-/*   Updated: 2021/03/03 18:08:48 by sremenyi         ###   ########.fr       */
+/*   Updated: 2021/03/04 20:06:25 by sremenyi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	write_clear(t_buffer *b)
 	b->buff_i = 0;
 }
 
-void	add_buff(t_buffer *b, t_flags *f, char c)
+void	add_buffer(t_buffer *b, t_flags *f, char c)
 {
 	if (b->buff_i == BUFFER_SIZE)
 		write_clear(b);
 	b->buffer[b->buff_i] = c;
 	b->buff_i++;
-	f->width--;
+	f->breadth--;
 }
